@@ -63,92 +63,196 @@
   }
   .nav-cta:hover { opacity: 0.85; }
 
-  /* ─── HERO ─── */
+  /* ─── HERO CASINO ─── */
   #accueil {
     min-height: 100vh;
-    display: flex; align-items: center; justify-content: center;
-    padding: 120px 40px 80px;
+    display: flex; flex-direction: column; align-items: center; justify-content: center;
+    padding: 100px 40px 60px;
     position: relative; overflow: hidden;
   }
-  .hero-bg {
+
+  /* Tapis vert feutré en fond */
+  .felt-bg {
     position: absolute; inset: 0; z-index: 0;
-    background: radial-gradient(ellipse 60% 60% at 30% 50%, #f0c04012 0%, transparent 70%),
-                radial-gradient(ellipse 40% 40% at 80% 20%, #4c8fe810 0%, transparent 60%);
+    background: #0a1a0e;
+    background-image:
+      repeating-linear-gradient(0deg, #0c1f10 0px, #0c1f10 1px, transparent 1px, transparent 40px),
+      repeating-linear-gradient(90deg, #0c1f10 0px, #0c1f10 1px, transparent 1px, transparent 40px);
   }
-  .hero-pattern {
-    position: absolute; inset: 0; z-index: 0; opacity: 0.06;
-    background-image: repeating-linear-gradient(45deg, #f0c040 0, #f0c040 1px, transparent 0, transparent 50%);
-    background-size: 28px 28px;
+  .felt-overlay {
+    position: absolute; inset: 0; z-index: 0;
+    background: radial-gradient(ellipse 80% 70% at 50% 50%, #0e1a0c 0%, #060d08 100%);
+    opacity: 0.7;
   }
-  .hero-inner { position: relative; z-index: 1; display: flex; align-items: center; gap: 80px; max-width: 1100px; margin: 0 auto; }
+  /* Bordure tapis */
+  .felt-border {
+    position: absolute; inset: 12px; z-index: 0;
+    border: 3px solid #c9a22744;
+    border-radius: 40px;
+    pointer-events: none;
+  }
+  .felt-border-inner {
+    position: absolute; inset: 20px; z-index: 0;
+    border: 1px solid #c9a22722;
+    border-radius: 34px;
+    pointer-events: none;
+  }
 
-  /* Carte hero */
-  .hero-card-wrap { flex-shrink: 0; }
-  .hero-card {
-    width: 220px; height: 308px;
-    background: var(--nuit-mid);
-    border: 2px solid var(--or-fonce);
-    border-radius: 18px;
-    position: relative; overflow: hidden;
-    box-shadow: 0 0 60px #f0c04018, 0 20px 60px #00000066;
+  /* Cartes flottantes décoratives */
+  .floating-cards {
+    position: absolute; inset: 0; z-index: 1; pointer-events: none;
   }
-  .hero-card-inner {
-    position: absolute; inset: 8px;
-    border: 0.5px solid #f0c04033;
-    border-radius: 12px;
-  }
-  .hero-card-inner2 {
-    position: absolute; inset: 12px;
-    border: 0.5px solid #f0c04018;
-    border-radius: 10px;
-  }
-  .hero-card .corner { position: absolute; font-family: Georgia, serif; }
-  .hero-card .corner.tl { top: 18px; left: 18px; }
-  .hero-card .corner.br { bottom: 52px; right: 18px; transform: rotate(180deg); }
-  .hero-card .corner .val { font-size: 22px; font-weight: 700; color: var(--or); line-height: 1; }
-  .hero-card .corner .suit { font-size: 15px; color: var(--or); }
-  .hero-card .crown {
-    position: absolute; top: 52px; left: 50%; transform: translateX(-50%);
-    font-size: 13px; text-align: center;
-  }
-  .crown-svg { display: block; margin: 0 auto; }
-  .hero-card .big-spade {
-    position: absolute; top: 50%; left: 50%; transform: translate(-50%, -54%);
-    font-size: 96px; color: var(--or); line-height: 1;
-    text-shadow: 0 0 40px #f0c04033;
-  }
-  .hero-card .bande21 {
-    position: absolute; bottom: 0; left: 0; right: 0; height: 42px;
-    background: var(--or-fonce);
+  .fcard {
+    position: absolute;
+    background: white;
+    border-radius: 8px;
+    border: 1px solid #ddd;
     display: flex; align-items: center; justify-content: center;
-    font-family: Georgia, serif; font-size: 18px; font-weight: 700;
-    color: var(--nuit); letter-spacing: 8px;
-    border-radius: 0 0 16px 16px;
+    font-family: Georgia, serif; font-weight: 700;
+    box-shadow: 0 4px 16px #00000066;
   }
-  .hero-card .bande21::before {
-    content: ''; position: absolute; top: 0; left: 0; right: 0;
-    height: 1px; background: #f0e09066;
+  .fcard.red { color: #c0392b; }
+  .fcard.black { color: #1a1a2e; }
+  /* Positions cartes éparpillées */
+  .fcard.c1  { width:64px;height:90px;font-size:20px; top:12%;  left:4%;   transform:rotate(-22deg); opacity:.7; }
+  .fcard.c2  { width:56px;height:78px;font-size:17px; top:6%;   left:14%;  transform:rotate(10deg);  opacity:.5; }
+  .fcard.c3  { width:72px;height:100px;font-size:22px;top:18%;  left:1%;   transform:rotate(-5deg);  opacity:.4; }
+  .fcard.c4  { width:60px;height:84px;font-size:18px; top:8%;   right:5%;  transform:rotate(18deg);  opacity:.7; }
+  .fcard.c5  { width:68px;height:95px;font-size:20px; top:15%;  right:12%; transform:rotate(-12deg); opacity:.5; }
+  .fcard.c6  { width:52px;height:74px;font-size:16px; top:3%;   right:22%; transform:rotate(6deg);   opacity:.4; }
+  .fcard.c7  { width:64px;height:90px;font-size:20px; bottom:10%;left:3%;  transform:rotate(14deg);  opacity:.5; }
+  .fcard.c8  { width:56px;height:78px;font-size:17px; bottom:18%;left:11%; transform:rotate(-8deg);  opacity:.4; }
+  .fcard.c9  { width:70px;height:98px;font-size:21px; bottom:8%; right:4%; transform:rotate(-20deg); opacity:.6; }
+  .fcard.c10 { width:58px;height:82px;font-size:18px; bottom:20%;right:13%;transform:rotate(9deg);   opacity:.4; }
+
+  /* Jetons */
+  .chip {
+    position: absolute; border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+    font-family: sans-serif; font-weight: 700; font-size: 11px;
+    pointer-events: none;
+    border: 3px dashed rgba(255,255,255,0.3);
+    box-shadow: 0 2px 8px #00000066, inset 0 0 0 4px rgba(0,0,0,0.2);
+  }
+  .chip.red    { background:#c0392b; color:#fff; border-color:#e74c3c66; }
+  .chip.blue   { background:#2471a3; color:#fff; border-color:#3498db66; }
+  .chip.green  { background:#1a7a3a; color:#fff; border-color:#2ecc7166; }
+  .chip.black  { background:#1a1a2e; color:#f0c040; border-color:#f0c04066; }
+  .chip.gold   { background:#c9a227; color:#0e0e1f; border-color:#f0c04088; }
+  .chip.purple { background:#6c3483; color:#fff; border-color:#9b59b666; }
+  .chip.ch1  { width:52px;height:52px; top:22%;  left:7%;   transform:rotate(-10deg); opacity:.75; }
+  .chip.ch2  { width:44px;height:44px; top:30%;  left:2%;   transform:rotate(5deg);   opacity:.55; }
+  .chip.ch3  { width:60px;height:60px; top:55%;  left:5%;   transform:rotate(15deg);  opacity:.65; }
+  .chip.ch4  { width:48px;height:48px; top:65%;  left:12%;  transform:rotate(-5deg);  opacity:.5; }
+  .chip.ch5  { width:56px;height:56px; top:22%;  right:7%;  transform:rotate(8deg);   opacity:.7; }
+  .chip.ch6  { width:44px;height:44px; top:35%;  right:2%;  transform:rotate(-12deg); opacity:.55; }
+  .chip.ch7  { width:64px;height:64px; top:60%;  right:6%;  transform:rotate(6deg);   opacity:.6; }
+  .chip.ch8  { width:42px;height:42px; bottom:22%;right:14%;transform:rotate(-8deg);  opacity:.5; }
+  .chip.ch9  { width:50px;height:50px; bottom:15%;left:20%; transform:rotate(12deg);  opacity:.55; }
+
+  /* Dés décoratifs */
+  .dice {
+    position: absolute; width:36px;height:36px;
+    background:#f0f0e8; border-radius:8px;
+    display:flex; align-items:center; justify-content:center;
+    font-size:22px; pointer-events:none;
+    box-shadow: 0 2px 8px #00000055;
+    opacity:.5;
+  }
+  .dice.d1 { bottom:28%; left:16%;  transform:rotate(18deg); }
+  .dice.d2 { bottom:32%; right:18%; transform:rotate(-12deg); }
+
+  /* Zone centrale hero */
+  .hero-inner {
+    position: relative; z-index: 2;
+    width: 100%; max-width: 1100px; margin: 0 auto;
+    display: flex; flex-direction: column; align-items: center;
   }
 
-  /* Hero texte */
-  .hero-text { flex: 1; }
+  /* Table de blackjack stylisée */
+  .blackjack-table {
+    width: 100%; max-width: 860px;
+    background: #0f2a14;
+    border: 3px solid #c9a227;
+    border-radius: 50% 50% 10px 10px / 30% 30% 10px 10px;
+    padding: 48px 60px 40px;
+    position: relative;
+    margin-bottom: 40px;
+    box-shadow: 0 0 0 6px #0a1a0e, 0 0 0 8px #c9a22755, 0 20px 60px #000000aa;
+  }
+  .blackjack-table::before {
+    content: '';
+    position: absolute; inset: 8px;
+    border: 1px solid #c9a22733;
+    border-radius: 46% 46% 8px 8px / 28% 28% 8px 8px;
+    pointer-events: none;
+  }
+  /* Texte BLACKJACK en arc */
+  .table-arc {
+    text-align: center; margin-bottom: 32px;
+    font-family: Georgia, serif; font-size: 11px;
+    letter-spacing: 8px; color: #c9a22799;
+  }
+
+  /* Main du dealer — cartes sur la table */
+  .dealer-hand {
+    display: flex; justify-content: center; align-items: flex-end;
+    gap: -12px; margin-bottom: 28px; position: relative;
+    height: 130px;
+  }
+  .tcard {
+    width: 80px; height: 112px;
+    background: white; border-radius: 10px;
+    border: 1px solid #ddd;
+    display: flex; flex-direction: column;
+    padding: 8px;
+    position: absolute;
+    box-shadow: 0 4px 20px #00000066;
+    font-family: Georgia, serif; font-weight: 700;
+  }
+  .tcard.red { color: #c0392b; }
+  .tcard.black { color: #1a1a2e; }
+  .tcard .tc-val { font-size: 20px; line-height: 1; }
+  .tcard .tc-suit { font-size: 14px; line-height: 1; }
+  .tcard .tc-center { position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);font-size:32px; }
+  .tcard.back {
+    background: #1a1a8a;
+    background-image: repeating-linear-gradient(45deg,#1515701a 0,#1515701a 2px,transparent 2px,transparent 8px);
+    border: 2px solid #f0c040;
+  }
+  .tcard.t1 { transform: rotate(-18deg) translateX(-60px); z-index:1; }
+  .tcard.t2 { transform: rotate(-8deg)  translateX(-20px); z-index:2; }
+  .tcard.t3 { transform: rotate(0deg); z-index:3; }
+  .tcard.t4 { transform: rotate(8deg)  translateX(20px);  z-index:2; }
+  .tcard.t5 { transform: rotate(18deg) translateX(60px);  z-index:1; }
+
+  /* Score 21 */
+  .score-badge {
+    display: inline-flex; align-items: center; gap: 8px;
+    background: #c9a227; color: #0e0e1f;
+    font-family: Georgia, serif; font-size: 13px; font-weight: 700;
+    padding: 6px 16px; border-radius: 20px; margin-bottom: 24px;
+    letter-spacing: 2px;
+  }
+
+  /* Texte hero au centre de la table */
+  .table-content { text-align: center; }
   .hero-eyebrow {
     font-family: sans-serif; font-size: 11px; letter-spacing: 4px;
-    color: var(--or); margin-bottom: 20px;
-    display: flex; align-items: center; gap: 10px;
+    color: #c9a22799; margin-bottom: 16px;
+    display: flex; align-items: center; justify-content: center; gap: 10px;
   }
-  .hero-eyebrow::before { content: '♠'; }
-  .hero-h1 { font-size: clamp(36px, 5vw, 58px); font-weight: 700; line-height: 1.1; margin-bottom: 24px; }
+  .hero-h1 { font-size: clamp(32px, 4.5vw, 52px); font-weight: 700; line-height: 1.15; margin-bottom: 20px; color: white; }
   .hero-h1 .gold { color: var(--or); }
   .hero-sub {
-    font-family: sans-serif; font-size: 16px; color: var(--gris-clair);
-    line-height: 1.7; margin-bottom: 36px; max-width: 480px;
+    font-family: sans-serif; font-size: 15px; color: #aaa;
+    line-height: 1.7; margin-bottom: 32px; max-width: 520px; margin-left: auto; margin-right: auto;
   }
-  .hero-btns { display: flex; gap: 14px; flex-wrap: wrap; margin-bottom: 48px; }
+  .hero-btns { display: flex; gap: 14px; flex-wrap: wrap; justify-content: center; margin-bottom: 32px; }
   .btn-primary {
     font-family: sans-serif; font-size: 14px; font-weight: 600;
     background: var(--or); color: var(--nuit);
-    border: none; padding: 14px 28px; border-radius: 8px;
+    border: none; padding: 14px 32px; border-radius: 8px;
     cursor: pointer; letter-spacing: 0.5px; transition: opacity .2s;
     text-decoration: none; display: inline-block;
   }
@@ -161,13 +265,36 @@
     text-decoration: none; display: inline-block;
   }
   .btn-secondary:hover { background: #f0c04011; }
-  .hero-badges { display: flex; gap: 10px; flex-wrap: wrap; }
+  .hero-badges { display: flex; gap: 10px; flex-wrap: wrap; justify-content: center; }
   .badge {
     font-family: sans-serif; font-size: 12px;
     background: #f0c04010; color: var(--or);
     border: 0.5px solid #f0c04044;
     padding: 6px 14px; border-radius: 20px;
   }
+
+  /* Rangée de jetons sous la table */
+  .chips-row {
+    display: flex; gap: 16px; justify-content: center; align-items: center;
+    position: relative; z-index: 2; margin-bottom: 32px;
+  }
+  .chip-display {
+    width: 54px; height: 54px; border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+    font-family: sans-serif; font-weight: 700; font-size: 10px;
+    border: 4px dashed rgba(255,255,255,0.25);
+    box-shadow: 0 3px 12px #00000077, inset 0 0 0 5px rgba(0,0,0,0.2);
+    color: white; letter-spacing: 0.5px;
+    transition: transform .2s;
+  }
+  .chip-display:hover { transform: translateY(-4px) rotate(10deg); }
+  .chip-display.c-red    { background:#c0392b; border-color:#e74c3c77; }
+  .chip-display.c-blue   { background:#1a5276; border-color:#2980b988; }
+  .chip-display.c-green  { background:#1a7a3a; border-color:#27ae6088; }
+  .chip-display.c-black  { background:#1a1a2e; border-color:#f0c04077; color:#f0c040; }
+  .chip-display.c-gold   { background:#c9a227; border-color:#f0e09088; color:#0e0e1f; }
+  .chip-display.c-purple { background:#6c3483; border-color:#9b59b688; }
+  .chip-display.c-white  { background:#e8e4d8; border-color:#99999988; color:#1a1a2e; }
 
   /* ─── STATS ─── */
   #stats {
@@ -435,37 +562,102 @@
   <button class="nav-cta" onclick="document.getElementById('souscrire').scrollIntoView({behavior:'smooth'})">Jouer la carte</button>
 </nav>
 
-<!-- ═══════════════════════ HERO ═══════════════════════ -->
+<!-- ═══════════════════════ HERO CASINO ═══════════════════════ -->
 <section id="accueil">
-  <div class="hero-bg"></div>
-  <div class="hero-pattern"></div>
+
+  <!-- Tapis vert -->
+  <div class="felt-bg"></div>
+  <div class="felt-overlay"></div>
+  <div class="felt-border"></div>
+  <div class="felt-border-inner"></div>
+
+  <!-- Cartes éparpillées en fond -->
+  <div class="floating-cards">
+    <div class="fcard c1 black">A<br><small>♠</small></div>
+    <div class="fcard c2 red">K<br><small>♥</small></div>
+    <div class="fcard c3 black">J<br><small>♣</small></div>
+    <div class="fcard c4 red">Q<br><small>♦</small></div>
+    <div class="fcard c5 black">10<br><small>♠</small></div>
+    <div class="fcard c6 red">7<br><small>♥</small></div>
+    <div class="fcard c7 black">5<br><small>♣</small></div>
+    <div class="fcard c8 red">9<br><small>♦</small></div>
+    <div class="fcard c9 black">3<br><small>♠</small></div>
+    <div class="fcard c10 red">A<br><small>♦</small></div>
+    <!-- Jetons -->
+    <div class="chip red   ch1">5</div>
+    <div class="chip blue  ch2">10</div>
+    <div class="chip green ch3">25</div>
+    <div class="chip black ch4">100</div>
+    <div class="chip gold  ch5">500</div>
+    <div class="chip purple ch6">50</div>
+    <div class="chip red   ch7">5</div>
+    <div class="chip blue  ch8">10</div>
+    <div class="chip green ch9">25</div>
+    <!-- Dés -->
+    <div class="dice d1">⚄</div>
+    <div class="dice d2">⚂</div>
+  </div>
+
+  <!-- Contenu central -->
   <div class="hero-inner">
-    <div class="hero-card-wrap">
-      <div class="hero-card">
-        <div class="hero-card-inner"></div>
-        <div class="hero-card-inner2"></div>
-        <div class="corner tl"><div class="val">A</div><div class="suit">♠</div></div>
-        <div class="crown">♛</div>
-        <div class="big-spade">♠</div>
-        <div class="corner br"><div class="val">A</div><div class="suit">♠</div></div>
-        <div class="bande21">21</div>
+
+    <!-- Table de blackjack -->
+    <div class="blackjack-table">
+      <div class="table-arc">— BLACKROYALE TÉLÉCOM — MISEZ SUR LA CONNEXION —</div>
+
+      <!-- Cartes sur la table -->
+      <div class="dealer-hand">
+        <div class="tcard t1 red">
+          <div class="tc-val">A</div><div class="tc-suit">♥</div>
+          <div class="tc-center">♥</div>
+        </div>
+        <div class="tcard t2 black">
+          <div class="tc-val">K</div><div class="tc-suit">♠</div>
+          <div class="tc-center">♠</div>
+        </div>
+        <div class="tcard t3 red" style="background:#fffef8;">
+          <div class="tc-val" style="font-size:26px;color:#c9a227;">21</div>
+          <div class="tc-center" style="font-size:40px;color:#c9a227;">★</div>
+        </div>
+        <div class="tcard t4 black">
+          <div class="tc-val">J</div><div class="tc-suit">♣</div>
+          <div class="tc-center">♣</div>
+        </div>
+        <div class="tcard t5 back"></div>
+      </div>
+
+      <div style="text-align:center;margin-bottom:20px;">
+        <span class="score-badge">♠ BLACKJACK — CONNEXION GAGNANTE ♠</span>
+      </div>
+
+      <div class="table-content">
+        <div class="hero-eyebrow">♠ &nbsp; BlackRoyale Télécom &nbsp; ♠</div>
+        <h1 class="hero-h1">La mise minimale.<br><span class="gold">Le gain maximal.</span></h1>
+        <p class="hero-sub">Un réseau 5G pensé pour les gagnants. Sans engagement, sans frais cachés — juste une connexion royale à un prix imbattable.</p>
+        <div class="hero-btns">
+          <a class="btn-primary" href="#forfaits">Voir les forfaits</a>
+          <a class="btn-secondary" href="#couverture">Tester la couverture</a>
+        </div>
+        <div class="hero-badges">
+          <span class="badge">♠ Réseau 5G national</span>
+          <span class="badge">♥ Sans engagement</span>
+          <span class="badge">♦ Roaming Europe inclus</span>
+          <span class="badge">♣ Support 24/7</span>
+        </div>
       </div>
     </div>
-    <div class="hero-text">
-      <div class="hero-eyebrow">BlackRoyale Télécom</div>
-      <h1 class="hero-h1">La mise minimale.<br><span class="gold">Le gain maximal.</span></h1>
-      <p class="hero-sub">Un réseau 5G pensé pour les gagnants. Sans engagement, sans frais cachés — juste une connexion royale à un prix imbattable.</p>
-      <div class="hero-btns">
-        <a class="btn-primary" href="#forfaits">Voir les forfaits</a>
-        <a class="btn-secondary" href="#couverture">Tester la couverture</a>
-      </div>
-      <div class="hero-badges">
-        <span class="badge">♠ Réseau 5G national</span>
-        <span class="badge">♥ Sans engagement</span>
-        <span class="badge">♦ Roaming Europe inclus</span>
-        <span class="badge">♣ Support 24/7</span>
-      </div>
+
+    <!-- Rangée de jetons décoratifs interactifs -->
+    <div class="chips-row">
+      <div class="chip-display c-white">1€</div>
+      <div class="chip-display c-red">5€</div>
+      <div class="chip-display c-blue">10€</div>
+      <div class="chip-display c-green">25€</div>
+      <div class="chip-display c-black">100€</div>
+      <div class="chip-display c-purple">500€</div>
+      <div class="chip-display c-gold">1000€</div>
     </div>
+
   </div>
 </section>
 
