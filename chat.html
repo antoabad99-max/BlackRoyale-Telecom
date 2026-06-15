@@ -702,7 +702,7 @@ Tous les forfaits sont sans engagement. Le réseau couvre 98% du territoire en 4
 Tu peux orienter vers la souscription sur le site. Sois concis, élégant, et utilise très subtilement des métaphores de casino (mise, carte, jeu…) sans en abuser. Réponds en HTML simple (autorisé : <strong>, <br>, <em>, <ul>, <li>) sans balises de structure. Sois direct et utile avant tout.`;
 
     try {
-      var res = await fetch('https://api.anthropic.com/v1/messages', {
+      var res = await fetch('/api/chat', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
